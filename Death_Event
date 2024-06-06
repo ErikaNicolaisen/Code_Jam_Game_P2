@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Death : MonoBehaviour
+{
+    SpriteRenderer sprite;
+    [SerializeField] Sprite deadMouse;
+    private Liv Liv;
+
+    void Start()
+    {
+        Liv = FindObjectOfType<Liv>();
+        if (Liv != null)
+        {
+            Liv.OnFillLevelChanged += HandleFillLvelChanged;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (Liv != null)
+        {
+            Liv.OnFillLevelChanged -= HandleFillLvelChanged;
+        }
+    }
+
+    private void HandleFillLvelChanged(float newFillLevel)
+    {
+        if (newFillLevel <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        AudioManager.instance.playOneShot(FmodEvents.instance.crash, this.transform.position);
+        StopAllCoroutines();
+
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.sprite = deadMouse;
+
+    }
+
+}
