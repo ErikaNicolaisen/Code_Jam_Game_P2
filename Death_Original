@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    SpriteRenderer sprite;
-    [SerializeField] Sprite deadMouse;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Sprite deadMouse;
 
     public void Die()
     {
@@ -17,4 +15,3 @@ public class Death : MonoBehaviour
 
     }
 }
-
