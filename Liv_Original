@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 public class Liv : MonoBehaviour
 {
-    [SerializeField] public Image livSpriteRenderer;
-    public float maxFillLevel = 3f;
-    public float fillLevel;
-    Death death;
+    [SerializeField] private Image livSpriteRenderer;
+    private float maxFillLevel = 3f;
+    private float fillLevel;
+    private Death death;
 
-    void Start()
+    private void Start()
     {
         fillLevel = maxFillLevel;
         UpdateLivSprite();
         death = FindAnyObjectByType<Death>();
     }
-    
+
     public void DecreaseFillLevel(float amount)
     {
         fillLevel -= amount;
@@ -24,7 +24,7 @@ public class Liv : MonoBehaviour
             death.Die();
         }
         UpdateLivSprite();
-    }
+    
 
     private void UpdateLivSprite()
     {
